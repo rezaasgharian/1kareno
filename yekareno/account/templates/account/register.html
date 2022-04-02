@@ -1,10 +1,60 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Sign up</title>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
 </head>
 <body>
+<div class="container">
 
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+            <form role="form">
+                <fieldset>
+                    <h2>Please Sign up</h2>
+                    <hr class="colorgraph">
+                    <div class="form-group">
+                        <input type="fname" name="first_name" id="first_name" class="form-control input-lg"
+                               placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="lname" name="last_name" id="last_name" class="form-control input-lg"
+                               placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" class="form-control input-lg"
+                               placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" id="password" class="form-control input-lg"
+                               placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password_confirmation" id="password_confirmation"
+                               class="form-control input-lg"
+                               placeholder="Password Confirmation">
+                    </div>
+
+                    <hr class="colorgraph">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <a href="" class="btn btn-lg btn-primary btn-block">Sign up</a>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 text-center" style="margin-top: 1rem">
+                            If you have any account, please <a href="{% url 'account:login' %}" value="Sign In">Sign In</a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</div>
+<script src="{% static 'assets/js/scripts.js' %}"></script>
 </body>
 </html>
