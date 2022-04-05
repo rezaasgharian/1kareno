@@ -17,8 +17,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=50, blank=False, null=False)
-    description = models.TextField(max_length=300)
+    title = models.CharField(max_length=150, blank=False, null=False)
+    description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     thumbnail = models.ImageField(upload_to='media/thumbnails')
     price = models.IntegerField()
@@ -29,8 +29,8 @@ class Product(models.Model):
 
 
 class Article(models.Model):
-    title = models.CharField(max_length=50, blank=False)
-    description = models.TextField(max_length=300)
+    title = models.CharField(max_length=150, blank=False)
+    description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     thumbnail = models.ImageField(upload_to='media/thumbnails')
     pub_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
