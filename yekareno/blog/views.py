@@ -18,5 +18,5 @@ def articles(request):
     return render(request, 'blog/articles.html', {'articles': articles})
 
 def articleDetail(request, id):
-    article = get_object_or_404(Article, id=1)
+    article = get_object_or_404(Article, id=id)
     return render(request, 'blog/articleDetail.html', {'articleDetail': article})
