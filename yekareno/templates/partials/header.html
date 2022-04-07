@@ -1,0 +1,41 @@
+
+{% load static %}
+<header id="navigation" class="navbar-fixed-top navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- responsive nav button -->
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <i class="fa fa-bars fa-2x"></i>
+                    </button>
+					<!-- /responsive nav button -->
+
+					<!-- logo -->
+                    <a class="navbar-brand" href="#body">
+						<h1 id="logo">
+							<img src="{% static 'assets/img/logo brand.png' %}" alt="Brandi">
+						</h1>
+					</a>
+					<!-- /logo -->
+                </div>
+
+				<!-- main nav -->
+                <nav class="collapse navbar-collapse navbar-right" role="navigation">
+                    <ul id="nav" class="nav navbar-nav">
+                        <li class="current"><a href="{% url 'blog:index' %}#body" onclick='parent.location="{% url 'blog:index' %}#body"; return false;'>Home</a></li>
+                        <li><a href="{% url 'blog:index' %}#works" onclick='parent.location="{% url 'blog:index' %}#works"; return false;'>Products</a></li>
+                        <li><a href="{% url 'blog:articles' %}" onclick='parent.location="{% url 'blog:articles' %}"; return false;'>Articles</a></li>
+                        <li><a href="#team" onclick='parent.location="{% url 'blog:index' %}#contact"; return false;'>About us</a></li>
+                        <li><a href="{% url 'blog:index' %}#contact" onclick='parent.location="{% url 'blog:index' %}#contact"; return false;'>Contact us</a></li>
+						{% if user.is_authenticated %}
+                        <li><a href="{% url 'blog:index' %}" onclick='parent.location="{% url 'account:logout' %}"; return false;'>Logout</a></li>
+						{% else %}
+                        <li><a href="{% url 'account:login' %}" onclick='parent.location="{% url 'account:login' %}"; return false;'>Login</a></li>
+                        <li><a target="_blank" href="{% url 'account:register' %}" onclick='parent.location="{% url 'account:register' %}"; return false;'>Register</a></li>
+						{% endif %}
+                    </ul>
+                </nav>
+				<!-- /main nav -->
+
+            </div>
+        </header>

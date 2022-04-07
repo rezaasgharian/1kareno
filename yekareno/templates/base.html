@@ -4,17 +4,21 @@
 <!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+
     <head>
     	<!-- meta charec set -->
         <meta charset="utf-8">
 		<!-- Always force latest IE rendering engine or request Chrome Frame -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<!-- Page Title -->
-        <title>Articles</title>
+
+{% block title %}
+{% endblock %}
+
 		<!-- Meta Description -->
         <meta name="description" content="Blue One Page Creative HTML5 Template">
         <meta name="keywords" content="one page, single page, onepage, responsive, parallax, creative, business, html5, css3, css3 animation">
-        <meta name="author" content="Reza Asgharian">
+        <meta name="author" content="Muhammad Morshed">
 		<!-- Mobile Specific Meta -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -45,114 +49,31 @@
     <body id="body">
 
 
+		<div id="preloader">
+			<img src="{% static 'assets/img/preloader.gif' %}" alt="Preloader">
+		</div>
+
+
         <!--
         Fixed Navigation
         ==================================== -->
-        {% block Menu %}
-		<header id="navigation" class="navbar-fixed-top navbar" style="background-image: url({% static 'assets/img/banner.jpg' %});  background-repeat:no-repeat; background-size: cover">
-            <div class="container">
-                <div class="navbar-header">
-
-					<!-- logo -->
-                    <a class="navbar-brand" href="#body">
-						<h1 id="logo">
-							<img src="{% static 'assets/img/logo brand.png' %}" alt="Brandi">
-						</h1>
-					</a>
-					<!-- /logo -->
-                </div>
-
-				<!-- main nav -->
-                <nav class="collapse navbar-collapse navbar-right" role="navigation">
-                    <ul id="nav" class="nav navbar-nav">
-                        <li class="current"><a href="#body">Home</a></li>
-                        <li><a href="#features">Products</a></li>
-                        <li><a href="#works">Articles</a></li>
-                        <li><a href="#team">About us</a></li>
-                        <li><a href="http://google.com">Contact us</a></li>
-                    </ul>
-                </nav>
-				<!-- /main nav -->
-
-            </div>
-        </header>
-		{% endblock %}
+{% include 'partials/header.html' %}
+        <!--
+        End Fixed Navigation
+        ==================================== -->
 
 
-		<section id="team" class="team" style="margin-top: 7rem">
-			<div class="container">
-				<div class="row">
+{% block content %}
+{% endblock %}
 
-					<div class="sec-title text-center wow fadeInUp animated" data-wow-duration="700ms">
-						<h2>{{articleDetail}}</h2>
-						<div class="devider"><i class="fa fa-heart-o fa-lg"></i></div>
-					</div>
+        <!--
+        Home Slider
+        ==================================== -->
 
-					<div class="sec-sub-title text-center wow fadeInRight animated" data-wow-duration="500ms">
-						<img src="/{{ articleDetail.thumbnail }}" alt="">
-					</div>
-       						 {{ articleDetail.description|safe }}<br><br>
-       						 {{ articleDetail.pub_date }}<br><br>
-				</div>
-			</div>
-		</section>
 
-		<footer id="footer" class="footer">
-			<div class="container">
-				<div class="row">
 
-					<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms">
-						<div class="footer-single">
-							<img src="{% static 'assets/img/footer-logo.png' %}" alt="">
-							<p>eusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						</div>
-					</div>
 
-					<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="300ms">
-						<div class="footer-single">
-							<h6>Subscribe </h6>
-							<form action="#" class="subscribe">
-								<input type="text" name="subscribe" id="subscribe">
-								<input type="submit" value="&#8594;" id="subs">
-							</form>
-							<p>eusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-						</div>
-					</div>
-
-					<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="600ms">
-						<div class="footer-single">
-							<h6>Explore</h6>
-							<ul>
-								<li><a href="#">Inside Us</a></li>
-								<li><a href="#">Flickr</a></li>
-								<li><a href="#">Google</a></li>
-								<li><a href="#">Forum</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp animated" data-wow-duration="500ms" data-wow-delay="900ms">
-						<div class="footer-single">
-							<h6>Support</h6>
-							<ul>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Market Blog</a></li>
-								<li><a href="#">Help Center</a></li>
-								<li><a href="#">Pressroom</a></li>
-							</ul>
-						</div>
-					</div>
-
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<p class="copyright text-center">
-							Copyright © 2022 <a href="http://1kareno.com/">1Kareno</a>. All rights reserved. Designed & developed by <a href="http://1kareno.com/">1Kareno</a>
-						</p>
-					</div>
-				</div>
-			</div>
-		</footer>
+{% include 'partials/footer.html' %}
 
 		<a href="javascript:void(0);" id="back-top"><i class="fa fa-angle-up fa-3x"></i></a>
 
@@ -255,18 +176,3 @@
 		</script>
     </body>
 </html>
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Articles</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    {% for item in articles %}-->
-<!--        {{ item.title }}<br><br>-->
-<!--        {{ item.description }}<br>-->
-<!--    {% endfor %}-->
-<!--</body>-->
-<!--</html>-->

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    {% endblock %}
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/font-awesome.min.css' %}">
+		<!-- Twitter Bootstrap css -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+		<!-- jquery.fancybox  -->
+        <link rel="stylesheet" href="{% static 'assets/css/jquery.fancybox.css' %}">
+		<!-- animate -->
+        <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+		<!-- Main Stylesheet -->
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+		<!-- media-queries -->
+        <link rel="stylesheet" href="{% static 'assets/css/media-queries.css' %}">
+
+		<!-- Modernizer Script for old Browsers -->
+        <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}"></script>
+</head>
+<body style="background-image: url({% static 'assets/img/banner.jpg' %});background-repeat:no-repeat;background-size: cover">
+{% include 'partials/header.html' %}
+<div class="container center" >
+
+    <div class="row" style="margin-top:120px">
+    {% block content %}
+    {% endblock %}
+    </div>
+
+</div>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
+</html>
