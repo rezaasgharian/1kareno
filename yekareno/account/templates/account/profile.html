@@ -1,0 +1,24 @@
+{% load static %}
+{% block title %}
+<title> Profile </title>
+{% endblock %}
+{% block content %}
+<table>
+<tr>
+    <th> Username: {{ profile.user.username }} </th>
+</tr>
+<tr>
+    <th> First name: {{ profile.user.first_name }} </th>
+</tr>
+<tr>
+    <th> Last name: {{ profile.user.last_name }} </th>
+</tr>
+<tr>
+    <th> Phone: {{ profile.phone }} </th>
+</tr>
+<tr>
+    <th> Avatar: {{ profile.avatar }} </th>
+</tr>
+</table>
+{% endblock %}
+

@@ -29,6 +29,7 @@
                         <li><a href="{% url 'blog:index' %}#contact" onclick='parent.location="{% url 'blog:index' %}#contact"; return false;'>Contact us</a></li>
 						{% if user.is_authenticated %}
                         <li><a href="{% url 'blog:index' %}" onclick='parent.location="{% url 'account:logout' %}"; return false;'>Logout</a></li>
+                        <li><a href="{% url 'blog:index' %}" onclick='parent.location="{% url 'account:profile' %}"; return false;'>Profile</a></li>
 						{% else %}
                         <li><a href="{% url 'account:login' %}" onclick='parent.location="{% url 'account:login' %}"; return false;'>Login</a></li>
                         <li><a target="_blank" href="{% url 'account:register' %}" onclick='parent.location="{% url 'account:register' %}"; return false;'>Register</a></li>

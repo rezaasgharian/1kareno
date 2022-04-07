@@ -5,6 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
+from .models import *
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -53,3 +55,6 @@ def logout(request):
     return redirect("account:login")
 
 
+def profile(request):
+    profile = Profile.objects.all()
+    return render(request, 'account/profile.html', {'profile': profile})
