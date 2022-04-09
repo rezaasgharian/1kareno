@@ -1,8 +1,11 @@
+{% extends 'base.html' %}
 {% load static %}
 {% block title %}
 <title> Profile </title>
 {% endblock %}
 {% block content %}
+
+<div style="margin-top: 8rem" >
 <table>
 <tr>
     <th> Username: {{ profile.user.username }} </th>
@@ -20,5 +23,11 @@
     <th> Avatar: {{ profile.avatar }} </th>
 </tr>
 </table>
+</div>
+
+<br>
+
+<a methods="post" href="{% url 'account:profile-update' %}"> Update Profile </a>
+
 {% endblock %}
 

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .forms import RegisterForm
+from .forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
@@ -56,5 +56,24 @@ def logout(request):
 
 
 def profile(request):
-    profile = Profile.objects.all()
-    return render(request, 'account/profile.html', {'profile': profile})
+    user_profile = Profile.objects.get(user_id=request.user.id)
+    print(Profile.user)
+    return render(request, 'account/profile.html', {'profile': user_profile})
+
+
+def profileUpdate(request):
+    if request.method == 'POST':
+        print('if')
+        profile_user = UserUpdateForm(request.POST, instance=request.user)
+        profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
+        if profile_user and profile_model.is_valid():
+            profile_user.save()
+            profile_model.save()
+            return redirect('account:profile')
+
+    else:
+        print('hello')
+        profile_user = UserUpdateForm(instance=request.user)
+        profile_model = ProfileUpdateForm(instance=request.user.profile)
+        context = {'profile_user': profile_user, 'profile_model': profile_model}
+        return render(request, 'account/profile-update.html', context)

@@ -9,4 +9,4 @@ class Profile(models.Model):
     avatar = models.ImageField(upload_to='media/avatars')
 
     def __str__(self):
-        return self.user
+        return self.phone
