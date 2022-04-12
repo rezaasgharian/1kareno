@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Product, Category, Article
 from django.shortcuts import get_object_or_404
+from .forms import *
 
 
 # Create your views here.
@@ -17,6 +18,21 @@ def products(request):
 def articles(request):
     articles = Article.objects.all()
     return render(request, 'blog/articles.html', {'articles': articles})
+
+
+
+def create_article(request):
+    if request.method == 'POST':
+        form = userCreateArticle(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            Article.objects.create(user_id= request.user.user_id, title= data['title'], description= data['description'], category= data['category'], thumbnail= data['thumbnail'], pub_date= data['pub_date'], status= data['status'])
+            return redirect('blog:articles')
+    else:
+        user_article = userCreateArticle()
+        return render(request, 'blog/create_article.html', {'user_article':user_article})
+
+
 
 def articleDetail(request, id):
     article = get_object_or_404(Article, id=id)

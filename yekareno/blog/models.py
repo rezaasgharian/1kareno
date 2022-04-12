@@ -1,9 +1,7 @@
-import datetime
-
-import django
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -29,11 +27,17 @@ class Product(models.Model):
 
 
 class Article(models.Model):
+    CATEGORY_CHOICES = (
+        ('D', 'Draft'),
+        ('P', 'Publish'),
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, blank=False)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     thumbnail = models.ImageField(upload_to='media/thumbnails')
     pub_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
+    status = models.CharField(choices= CATEGORY_CHOICES, max_length=1)
 
     def __str__(self):
         return self.title

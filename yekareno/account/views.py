@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from .models import *
-from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -19,7 +18,7 @@ def register(request):
             User.objects.create_user(first_name=data['first_name'], last_name=data['last_name'],
                                      username=data['username'], email=data['email'], password=data['password1'])
             messages.success(request, 'You registered successfully!')
-            return redirect('blog:login')
+            return redirect('account:login')
         else:
             errors = form.errors
             return render(request, 'account/register.html', {'form': form, 'errors': errors})
@@ -57,23 +56,41 @@ def logout(request):
 
 def profile(request):
     user_profile = Profile.objects.get(user_id=request.user.id)
-    print(Profile.user)
-    return render(request, 'account/profile.html', {'profile': user_profile})
+    profile_user = UserUpdateForm(request.POST, instance=request.user)
+    profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
+    return render(request, 'account/profile.html', {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile})
+
 
 
 def profileUpdate(request):
     if request.method == 'POST':
-        print('if')
         profile_user = UserUpdateForm(request.POST, instance=request.user)
         profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
-        if profile_user and profile_model.is_valid():
+        if profile_user.is_valid() and profile_model.is_valid():
             profile_user.save()
             profile_model.save()
             return redirect('account:profile')
-
+        else:
+            messages.error(request, 'error')
+            return redirect("account:profile")
     else:
-        print('hello')
+        print("else")
         profile_user = UserUpdateForm(instance=request.user)
         profile_model = ProfileUpdateForm(instance=request.user.profile)
         context = {'profile_user': profile_user, 'profile_model': profile_model}
-        return render(request, 'account/profile-update.html', context)
+    return render(request, 'account/profile.html', context)
+
+
+def changePassword(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('account:login')
+        else:
+            print(form.errors)
+            messages.error(request, 'Your password is not change successfully!')
+            return redirect('account:profile')
+    else:
+        form = PasswordChangeForm(request.user, request.POST)
+        return render(request, 'account/profile-update.html', {'form': form})
