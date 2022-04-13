@@ -15,9 +15,10 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            User.objects.create_user(first_name=data['first_name'], last_name=data['last_name'],
+            new_user = User.objects.create_user(first_name=data['first_name'], last_name=data['last_name'],
                                      username=data['username'], email=data['email'], password=data['password1'])
             messages.success(request, 'You registered successfully!')
+            Profile.objects.create(user= new_user)
             return redirect('account:login')
         else:
             errors = form.errors
@@ -64,17 +65,17 @@ def profile(request):
 
 def profileUpdate(request):
     if request.method == 'POST':
-        profile_user = UserUpdateForm(request.POST, instance=request.user)
-        profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
+        profile_user = UserUpdateForm(data=request.POST, instance=request.user)
+        profile_model = ProfileUpdateForm(data=request.POST, files=request.FILES, instance=request.user.profile)
+        print(profile_user, profile_model)
         if profile_user.is_valid() and profile_model.is_valid():
             profile_user.save()
             profile_model.save()
             return redirect('account:profile')
-        else:
-            messages.error(request, 'error')
-            return redirect("account:profile")
+        # else:
+        #     messages.error(request, 'error')
+        #     return redirect("account:profile")
     else:
-        print("else")
         profile_user = UserUpdateForm(instance=request.user)
         profile_model = ProfileUpdateForm(instance=request.user.profile)
         context = {'profile_user': profile_user, 'profile_model': profile_model}
