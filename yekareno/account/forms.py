@@ -24,7 +24,6 @@ class ProfileUpdateForm(forms.ModelForm):
 
 
 
-
 # class UpdateProfileForm(forms.ModelForm):
 #     user = OneToOneField(User, on_delete=models.CASCADE)
 #     biography = models.TextField(null=False, blank=True)

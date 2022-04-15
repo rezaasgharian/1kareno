@@ -31,13 +31,13 @@ class Article(models.Model):
         ('D', 'Draft'),
         ('P', 'Publish'),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, blank=False)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     thumbnail = models.ImageField(upload_to='media/thumbnails')
     pub_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
-    status = models.CharField(choices= CATEGORY_CHOICES, max_length=1)
+    status = models.CharField(choices=CATEGORY_CHOICES, max_length=1)
 
     def __str__(self):
         return self.title

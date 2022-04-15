@@ -12,15 +12,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.first_name
-
-
+#
+#
 # def save_profile_user(sender, **kwargs):
 #     if kwargs['created']:
 #         profile_user = Profile(user=kwargs['instance'])
 #         profile_user.save()
 #
 # post_save.connect(save_profile_user, sender=settings.AUTH_USER_MODEL)
-
+#
 
 
 # from PIL import Image

@@ -78,7 +78,7 @@ def profileUpdate(request):
     else:
         profile_user = UserUpdateForm(instance=request.user)
         profile_model = ProfileUpdateForm(instance=request.user.profile)
-        context = {'profile_user': profile_user, 'profile_model': profile_model}
+    context = {'profile_user': profile_user, 'profile_model': profile_model}
     return render(request, 'account/profile.html', context)
 
 
