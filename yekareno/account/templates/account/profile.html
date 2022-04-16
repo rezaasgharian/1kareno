@@ -41,7 +41,7 @@
 
                             <img  {% if profile.avatar %} src="{{ profile.avatar.url }}"  {% endif %} height="300px" width="300px"
                                  class="thumb-lg img-circle img-thumbnail" alt="profile-image" >
-                            <h3 style="margin-top: 3rem" class="text-white">{{ profile.user.first_name }}</h3>
+                            <h3 style="margin-top: 3rem" class="text-white">{{ profile.user.first_name }}   {{ profile.user.last_name }}</h3>
                         </div>
                     </div>
                     <!--/ meta -->
@@ -360,7 +360,7 @@
                                     <h3 class="panel-title">Edit Profile</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <form method="post" enctype="multipart/form-data">
+                                    <form method="post" action="{% url 'account:profile-update' %}" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <label for="first_name">First Name</label>
