@@ -31,7 +31,7 @@ class Article(models.Model):
         ('D', 'Draft'),
         ('P', 'Publish'),
     )
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, blank=False)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)

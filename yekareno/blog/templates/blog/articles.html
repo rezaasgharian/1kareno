@@ -5,25 +5,6 @@
 {% endblock %}
 
 {% block content %}
-<!--					<div>-->
-<!--						{% for item in articles %}-->
-<!--							<figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms">-->
-<!--						<div class="member-thumb">-->
-<!--							<a href="{% url 'blog:articleDetail' item.id %}">-->
-<!--							<img src="/{{ item.thumbnail }}" alt="Team Member" class="img-responsive">-->
-<!--							<figcaption class="overlay">-->
-<!--								<h5>  {{ item }} </h5>-->
-<!--								<p> {{ item.pub_date }} </p>-->
-<!--							</figcaption>-->
-<!--						</div>-->
-<!--							</a>-->
-<!--					</figure>-->
-<!--						{% endfor %}-->
-<!--					</div>-->
-
-<!--				</div>-->
-<!--			</div>-->
-<!--		</section>-->
 
 <section id="team" class="team">
 			<div class="container">
@@ -40,8 +21,8 @@
 							<div class="member-thumb">
 								<img src="{% static 'assets/img/team/member-1.png' %}" alt="Team Member" class="img-responsive">
 								<figcaption class="overlay">
-									<h5>voluptatem quia voluptas </h5>
-									<p>sit aspernatur aut odit aut fugit,</p>
+									<h5>{{article.title}}</h5>
+									<p>{{article.description}}</p>
 									<ul class="social-links text-center">
 										<li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
 										<li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
@@ -54,8 +35,6 @@
 					</figure>
 					{% endfor %}
 					<!-- end single member -->
-
-
 				</div>
 			</div>
 		</section>

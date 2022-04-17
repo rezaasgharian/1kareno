@@ -62,7 +62,6 @@ def profile(request):
     return render(request, 'account/profile.html', {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile})
 
 
-
 def profileUpdate(request):
     if request.method == 'POST':
         profile_user = UserUpdateForm(data=request.POST, instance=request.user)

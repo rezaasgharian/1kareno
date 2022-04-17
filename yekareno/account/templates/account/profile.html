@@ -38,10 +38,11 @@
                     <div class="bg-picture text-center">
                         <div style="margin-top: 10rem" class="bg-picture-overlay"></div>
                         <div class="profile-info-name">
-
-                            <img  {% if profile.avatar %} src="{{ profile.avatar.url }}"  {% endif %} height="300px" width="300px"
-                                 class="thumb-lg img-circle img-thumbnail" alt="profile-image" >
-                            <h3 style="margin-top: 3rem" class="text-white">{{ profile.user.first_name }}   {{ profile.user.last_name }}</h3>
+                            <img {% if profile.avatar %} src="{{ profile.avatar.url }}" {% endif %} height="300px"
+                                 width="300px"
+                                 class="thumb-lg img-circle img-thumbnail" alt="profile-image">
+                            <h3 style="margin-top: 3rem" class="text-white">{{ profile.user.first_name }} {{
+                                profile.user.last_name }}</h3>
                         </div>
                     </div>
                     <!--/ meta -->
@@ -50,25 +51,31 @@
             <div style="margin-top: 4rem" class="row user-tabs">
                 <div class="col-lg-6 col-md-9 col-sm-9">
                     <ul class="nav nav-tabs tabs" style="width: 100%;">
-                        <li class="active tab" style="width: 25%;">
+                        <li class="active tab" style="width: 20%;">
                             <a href="#home-2" data-toggle="tab" aria-expanded="false" class="active">
                                 <span class="visible-xs"><i class="fa fa-home"></i></span>
                                 <span class="hidden-xs">About Me</span>
                             </a>
                         </li>
-                        <li class="tab" style="width: 25%;">
+                        <li class="tab" style="width: 20%;">
                             <a href="#profile-2" data-toggle="tab" aria-expanded="false">
                                 <span class="visible-xs"><i class="fa fa-user"></i></span>
                                 <span class="hidden-xs">Activities</span>
                             </a>
                         </li>
-                        <li class="tab" style="width: 25%;">
+                        <li class="tab" style="width: 20%;">
                             <a href="#messages-2" data-toggle="tab" aria-expanded="true">
                                 <span class="visible-xs"><i class="fa fa-envelope-o"></i></span>
                                 <span class="hidden-xs">Projects</span>
                             </a>
                         </li>
-                        <li class="tab" style="width: 25%;">
+                        <li class="tab" style="width: 20%;">
+                            <a href="#settings-2" data-toggle="tab" aria-expanded="false">
+                                <span class="visible-xs"><i class="fa fa-cog"></i></span>
+                                <span class="hidden-xs">Write Article</span>
+                            </a>
+                        </li>
+                        <li class="tab" style="width: 20%;">
                             <a href="#settings-2" data-toggle="tab" aria-expanded="false">
                                 <span class="visible-xs"><i class="fa fa-cog"></i></span>
                                 <span class="hidden-xs">Settings</span>
@@ -96,7 +103,6 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="tab-content profile-tab-content">
                         <div class="tab-pane active" id="home-2">
                             <div class="row">
@@ -357,33 +363,86 @@
                             <!-- Personal-Information -->
                             <div class="panel panel-default panel-fill">
                                 <div class="panel-heading">
+                                    <h3 class="panel-title">publish your article</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form method="post" action="{% url 'blog:createArticle' %}"
+                                          enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="title">Title</label>
+                                            <input value="{{article.title}}" type="text" name="ftitle" id="title"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description">Description</label>
+                                            <textarea style="height: 125px" name="description" id="description"
+                                                      class="form-control">{{article.description}}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category">Category</label>
+                                            <input value="{{article.category}}" type="category" name="category"
+                                                   id="category"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pub_date">Pub_date</label>
+                                            <input value="{{article.pub_date}}" type="datetime-local" name="pub_date"
+                                                   id="pub_date" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="status">Status</label>
+                                            <textarea style="height: 125px" name="biography" id="AboutMe"
+                                                      class="form-control">{{profile.biography}}</textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="thumbnail">Thumbnail</label>
+                                            <input value="{{article.thumbnail}}" type="file" name="thumbnail"
+                                                   id="thumbnail"
+                                                   class="form-control">
+                                        </div>
+                                        <button class="btn btn-primary waves-effect waves-light w-md" type="submit">
+                                            Save
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <div class="panel panel-default panel-fill">
+                                <div class="panel-heading">
                                     <h3 class="panel-title">Edit Profile</h3>
                                 </div>
                                 <div class="panel-body">
-                                    <form method="post" action="{% url 'account:profile-update' %}" enctype="multipart/form-data">
+                                    <form method="post" action="{% url 'account:profile-update' %}"
+                                          enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <label for="first_name">First Name</label>
-                                            <input value="{{user.first_name}}" type="text" name="first_name" id="first_name"
+                                            <input value="{{user.first_name}}" type="text" name="first_name"
+                                                   id="first_name"
                                                    class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="last_name">Last Name</label>
-                                            <input value="{{user.last_name}}" type="text" name="last_name" id="last_name"
+                                            <input value="{{user.last_name}}" type="text" name="last_name"
+                                                   id="last_name"
                                                    class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="Email">Email</label>
-                                            <input value="{{user.email}}" type="email" name="email"  id="Email"
+                                            <input value="{{user.email}}" type="email" name="email" id="Email"
                                                    class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
-                                            <input value="{{profile.phone}}" type="text" name="phone" id="phone" class="form-control">
+                                            <input value="{{profile.phone}}" type="text" name="phone" id="phone"
+                                                   class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="AboutMe">About Me</label>
-                                            <textarea style="height: 125px" name="biography" id="AboutMe" class="form-control">{{profile.biography}}</textarea>
+                                            <textarea style="height: 125px" name="biography" id="AboutMe"
+                                                      class="form-control">{{profile.biography}}</textarea>
                                         </div>
                                         <button class="btn btn-primary waves-effect waves-light w-md" type="submit">
                                             Save
@@ -411,11 +470,12 @@
                                                    id="new_password1"
                                                    class="form-control">
                                         </div>
-                                         <div class="form-group">
-                                    <label for="new_password2">password confirmation</label>
-                                    <input type="password" name="new_password2" placeholder="6 - 15 Characters" id="new_password2"
-                                           class="form-control">
-                                </div>
+                                        <div class="form-group">
+                                            <label for="new_password2">password confirmation</label>
+                                            <input type="password" name="new_password2" placeholder="6 - 15 Characters"
+                                                   id="new_password2"
+                                                   class="form-control">
+                                        </div>
                                         <button class="btn btn-primary waves-effect waves-light w-md" type="submit">Save
                                         </button>
                                     </form>
