@@ -16,6 +16,7 @@
 					</div>
 
 					<!-- single member -->
+					{% if articles %}
 					{% for article in articles %}
 						<figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms">
 							<div class="member-thumb">
@@ -34,6 +35,7 @@
 						<span>Managing Director</span>
 					</figure>
 					{% endfor %}
+					{% endif %}
 					<!-- end single member -->
 				</div>
 			</div>

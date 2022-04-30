@@ -9,7 +9,6 @@ from .models import *
 
 
 # Create your views here.
-
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -56,7 +55,7 @@ def logout(request):
 
 
 def profile(request):
-    user_profile = Profile.objects.get(user_id=request.user.id)
+    user_profile = Profile.objects.get(user_id=request.user.user_id)
     profile_user = UserUpdateForm(request.POST, instance=request.user)
     profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
     return render(request, 'account/profile.html', {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile})

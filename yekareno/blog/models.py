@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.conf import settings
 
 
 # Create your models here.
@@ -31,7 +31,7 @@ class Article(models.Model):
         ('D', 'Draft'),
         ('P', 'Publish'),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=150, blank=False)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
