@@ -41,51 +41,57 @@
                             <img {% if profile.avatar %} src="{{ profile.avatar.url }}" {% endif %} height="300px"
                                  width="300px"
                                  class="thumb-lg img-circle img-thumbnail" alt="profile-image">
-                            <h3 style="margin-top: 3rem" class="text-white">{{ profile.user.first_name }} {{
-                                profile.user.last_name }}</h3>
+                            <h3 style="margin-top: 3rem" class="text-white">{{ profile.user.first_name }}
+                                {{ profile.user.last_name }}</h3>
                         </div>
                     </div>
                     <!--/ meta -->
                 </div>
             </div>
             <div style="margin-top: 4rem" class="row user-tabs">
-                <div class="col-lg-6 col-md-9 col-sm-9">
+                <div class="col-lg-10 col-md-10 col-sm-10">
                     <ul class="nav nav-tabs tabs" style="width: 100%;">
-                        <li class="active tab" style="width: 20%;">
+                        <li class="active tab" style="width: 15%;">
                             <a href="#home-2" data-toggle="tab" aria-expanded="false" class="active">
                                 <span class="visible-xs"><i class="fa fa-home"></i></span>
                                 <span class="hidden-xs">About Me</span>
                             </a>
                         </li>
-                        <li class="tab" style="width: 20%;">
+                        <li class="tab" style="width: 15%;">
                             <a href="#profile-2" data-toggle="tab" aria-expanded="false">
                                 <span class="visible-xs"><i class="fa fa-user"></i></span>
                                 <span class="hidden-xs">Activities</span>
                             </a>
                         </li>
-                        <li class="tab" style="width: 20%;">
+                        <li class="tab" style="width: 15%;">
                             <a href="#messages-2" data-toggle="tab" aria-expanded="true">
                                 <span class="visible-xs"><i class="fa fa-envelope-o"></i></span>
                                 <span class="hidden-xs">Projects</span>
                             </a>
                         </li>
-                        <li class="tab" style="width: 20%;">
+                        <li class="tab" style="width: 15%;">
                             <a href="#settings-2" data-toggle="tab" aria-expanded="false">
                                 <span class="visible-xs"><i class="fa fa-cog"></i></span>
                                 <span class="hidden-xs">Write Article</span>
                             </a>
                         </li>
-                        <li class="tab" style="width: 20%;">
+                        <li class="tab" style="width: 15%;">
                             <a href="#settings-2" data-toggle="tab" aria-expanded="false">
                                 <span class="visible-xs"><i class="fa fa-cog"></i></span>
                                 <span class="hidden-xs">Settings</span>
+                            </a>
+                        </li>
+                         <li class="tab" style="width: 15%;">
+                            <a href="#edit-profile" data-toggle="tab" aria-expanded="false">
+                                <span class="visible-xs"><i class="fa fa-cog"></i></span>
+                                <span class="hidden-xs">Edit Profile</span>
                             </a>
                         </li>
                         <div class="indicator" style="right: 476px; left: 0px;"></div>
                         <div class="indicator" style="right: 476px; left: 0px;"></div>
                     </ul>
                 </div>
-                <div class="col-lg-6 col-md-3 col-sm-3 hidden-xs">
+                <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
                     <div class="pull-right">
                         <div class="dropdown">
                             <a data-toggle="dropdown"
@@ -132,7 +138,6 @@
                                         </div>
                                     </div>
                                     <!-- Personal-Information -->
-
                                     <!-- Languages -->
                                     <div class="panel panel-default panel-fill">
                                         <div class="panel-heading">
@@ -409,6 +414,11 @@
                                 </div>
                             </div>
 
+
+                        </div>
+                        <div class="tab-pane" id="edit-profile">
+                            <!-- Personal-Information -->
+
                             <div class="panel panel-default panel-fill">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Edit Profile</h3>
@@ -437,6 +447,11 @@
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
                                             <input value="{{profile.phone}}" type="text" name="phone" id="phone"
+                                                   class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="avatar">Avatar</label>
+                                            <input value="{{profile.avatar}}" type="file" name="avatar" id="avatar"
                                                    class="form-control">
                                         </div>
                                         <div class="form-group">

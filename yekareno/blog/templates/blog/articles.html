@@ -20,10 +20,9 @@
 					{% for article in articles %}
 						<figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms">
 							<div class="member-thumb">
-								<img src="{% static 'assets/img/team/member-1.png' %}" alt="Team Member" class="img-responsive">
+								<img src="{{article.thumbnail.url}}" alt="Team Member" class="img-responsive">
 								<figcaption class="overlay">
-									<h5>{{article.title}}</h5>
-									<p>{{article.description}}</p>
+									<a href="{% url 'blog:articleDetail' article.id %}"><h5>{{article.title}}</h5></a>
 									<ul class="social-links text-center">
 										<li><a href=""><i class="fa fa-twitter fa-lg"></i></a></li>
 										<li><a href=""><i class="fa fa-facebook fa-lg"></i></a></li>
@@ -31,8 +30,8 @@
 									</ul>
 								</figcaption>
 						</div>
-						<h4>John Filmr Doe</h4>
-						<span>Managing Director</span>
+						<h4>{{article.title}}</h4>
+						<span>{{article.user.username}}</span>
 					</figure>
 					{% endfor %}
 					{% endif %}
