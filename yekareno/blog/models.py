@@ -5,7 +5,6 @@ from django.conf import settings
 from PIL import Image
 
 
-
 # Create your models here.
 class Category(models.Model):
     title = models.CharField(max_length=50, blank=False)

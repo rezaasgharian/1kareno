@@ -38,6 +38,7 @@
                     <div class="bg-picture text-center">
                         <div style="margin-top: 10rem" class="bg-picture-overlay"></div>
                         <div class="profile-info-name">
+                            <img src="{% static 'assets/img/avatar1.png' %}" alt="">
                             <img {% if profile.avatar %} src="{{ profile.avatar.url }}" {% endif %} height="300px"
                                  width="300px"
                                  class="thumb-lg img-circle img-thumbnail" alt="profile-image">
