@@ -6,9 +6,12 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from .models import *
+from ..blog.models import Category
 
 
 # Create your views here.
+
+
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -56,9 +59,10 @@ def logout(request):
 
 def profile(request):
     user_profile = request.user.profile
+    categories = Category.objects.all()
     profile_user = UserUpdateForm(request.POST, instance=request.user)
     profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
-    return render(request, 'account/profile.html', {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile})
+    return render(request, 'account/profile.html', {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile , 'category': categories})
 
 
 def profileUpdate(request):

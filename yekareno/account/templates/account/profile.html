@@ -38,10 +38,14 @@
                     <div class="bg-picture text-center">
                         <div style="margin-top: 10rem" class="bg-picture-overlay"></div>
                         <div class="profile-info-name">
-                            <img src="{% static 'assets/img/avatar1.png' %}" alt="">
-                            <img {% if profile.avatar %} src="{{ profile.avatar.url }}" {% endif %} height="300px"
+                            {% if profile.avatar %}
+                            <img src="{{ profile.avatar.url }}" height="300px"
                                  width="300px"
                                  class="thumb-lg img-circle img-thumbnail" alt="profile-image">
+                            {% else %}
+                            <img src="{% static 'assets/img/avatar.png' %}" height="300px"
+                                 width="300px" class="thumb-lg img-circle img-thumbnail" alt="profile-image">
+                            {% endif %}
                             <h3 style="margin-top: 3rem" class="text-white">{{ profile.user.first_name }}
                                 {{ profile.user.last_name }}</h3>
                         </div>
@@ -369,7 +373,7 @@
                             <!-- Personal-Information -->
                             <div class="panel panel-default panel-fill">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title">publish your article</h3>
+                                    <h3 class="panel-title">Publish your article</h3>
                                 </div>
                                 <div class="panel-body">
                                     <form method="post" action="{% url 'blog:createArticle' %}"
@@ -387,9 +391,14 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="category">Category</label>
-                                            <input value="{{article.category}}" type="category" name="category"
-                                                   id="category"
-                                                   class="form-control">
+                                            <select>
+                                                {% for item in category %}
+                                                <option> {{ item.title }} </option>
+                                                {% endfor %}
+                                            </select>
+<!--                                            <input value="{{article.category}}" type="category" name="category"-->
+<!--                                                   id="category"-->
+<!--                                                   class="form-control">-->
                                         </div>
                                         <div class="form-group">
                                             <label for="pub_date">Pub_date</label>

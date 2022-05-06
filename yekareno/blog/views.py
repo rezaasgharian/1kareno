@@ -12,6 +12,8 @@ def index(request):
 
 def category(request):
     categories = Category.objects.all()
+    print(categories)
+    return render(request, 'account/profile.html', {'category': categories})
 
 
 def products(request):

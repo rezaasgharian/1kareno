@@ -16,7 +16,9 @@ ol, ul {
     padding: 0;
     list-style: none;
 }
-
+li.tab a{
+    color: #5e5e5e;
+}
 figure, p {
     margin: 0;
 }
@@ -141,7 +143,7 @@ body > section,
 ==========================================*/
 
 #navigation {
-  background-color: rgba(16, 22, 54, 0.2);
+  background-color: #0EB493;
   border: 0 none;
   margin: 0;
   
