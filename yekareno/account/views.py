@@ -6,7 +6,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from .models import *
-from ..blog.models import Category
+# from yekareno.blog.models import Category
+
 
 
 # Create your views here.
@@ -18,9 +19,10 @@ def register(request):
         if form.is_valid():
             data = form.cleaned_data
             new_user = User.objects.create_user(first_name=data['first_name'], last_name=data['last_name'],
-                                     username=data['username'], email=data['email'], password=data['password1'])
+                                                username=data['username'], email=data['email'],
+                                                password=data['password1'])
             messages.success(request, 'You registered successfully!')
-            Profile.objects.create(user= new_user)
+            Profile.objects.create(user=new_user)
             return redirect('account:login')
         else:
             errors = form.errors
@@ -58,11 +60,13 @@ def logout(request):
 
 
 def profile(request):
-    user_profile = request.user.profile
     categories = Category.objects.all()
+    user_profile = request.user.profile
     profile_user = UserUpdateForm(request.POST, instance=request.user)
     profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
-    return render(request, 'account/profile.html', {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile , 'category': categories})
+    return render(request, 'account/profile.html',
+                  {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile,
+                   'categories': categories})
 
 
 def profileUpdate(request):

@@ -3,6 +3,8 @@ from .models import Product, Category, Article
 from django.shortcuts import get_object_or_404
 from .forms import *
 from django.contrib.auth.decorators import login_required
+from .models import *
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -12,8 +14,7 @@ def index(request):
 
 def category(request):
     categories = Category.objects.all()
-    print(categories)
-    return render(request, 'account/profile.html', {'category': categories})
+    return render(request, 'blog/create_article.html', {'category': categories})
 
 
 def products(request):
@@ -31,15 +32,20 @@ def articles(request):
 def create_article(request):
     if request.method == 'POST':
         form = userCreateArticle(request.POST)
+        print('hello')
         if form.is_valid():
             data = form.cleaned_data
             Article.objects.create(user_id=request.user.user_id, title=data['title'], description=data['description'],
                                    category=data['category'], thumbnail=data['thumbnail'], pub_date=data['pub_date'],
                                    status=data['status'])
-            return redirect('blog:articles')
+            # return redirect('blog:articles')
+            return HttpResponse('Your article is added')
+        else:
+            return HttpResponse('Your article is added')
     else:
+        categories = Category.objects.all()
         user_article = userCreateArticle()
-        return render(request, 'blog/create_article.html', {'user_article': user_article})
+        return render(request, 'blog/create_article.html', {'user_article': user_article, 'categories': categories})
 
 
 @login_required
@@ -50,3 +56,13 @@ def articleDetail(request, id):
 
 def base(request):
     return render(request, 'base.html')
+
+
+# def profile(request):
+#     categories = Category.objects.all()
+#     user_profile = request.user.profile
+#     profile_user = UserUpdateForm(request.POST, instance=request.user)
+#     profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
+#     return render(request, 'account/profile.html',
+#                   {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile,
+#                    'categories': categories})
