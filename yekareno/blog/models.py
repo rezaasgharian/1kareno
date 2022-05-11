@@ -36,19 +36,9 @@ class Article(models.Model):
     title = models.CharField(max_length=150, blank=False)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    thumbnail = models.ImageField(upload_to='media/thumbnails')
+    image = models.ImageField(upload_to='media/thumbnails')
     pub_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
     status = models.CharField(choices=CATEGORY_CHOICES, max_length=1)
-
-    def save(self, *args, **kwargs):
-        super().save()
-
-        img = Image.open(self.thumbnail.path)
-
-        if img.height > 300 or img.width > 300:
-            new_img = (300, 300)
-            img.thumbnail(new_img)
-            img.save(self.thumbnail.path)
 
     def __str__(self):
         return self.title

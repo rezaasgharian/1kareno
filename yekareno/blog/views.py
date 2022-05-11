@@ -32,16 +32,18 @@ def articles(request):
 def create_article(request):
     if request.method == 'POST':
         form = userCreateArticle(request.POST)
-        print('hello')
-        if form.is_valid():
-            data = form.cleaned_data
-            Article.objects.create(user_id=request.user.user_id, title=data['title'], description=data['description'],
-                                   category=data['category'], thumbnail=data['thumbnail'], pub_date=data['pub_date'],
-                                   status=data['status'])
-            # return redirect('blog:articles')
-            return HttpResponse('Your article is added')
-        else:
-            return HttpResponse('Your article is added')
+        print(form)
+        # if form.is_valid():
+        #     data = form.cleaned_data
+        #     print(request)
+        #     Article.objects.create(user_id=request.user.id, title=data['title'], description=data['description'],
+        #                            category=data['category'], pub_date=data['pub_date'],
+        #                            status=data['status'], image=data['image'])
+        #     # return redirect('blog:articles')
+        #     return HttpResponse('Your article is added')
+        # else:
+        #     print(form.data)
+        #     print(form.errors)
     else:
         categories = Category.objects.all()
         user_article = userCreateArticle()
@@ -56,13 +58,3 @@ def articleDetail(request, id):
 
 def base(request):
     return render(request, 'base.html')
-
-
-# def profile(request):
-#     categories = Category.objects.all()
-#     user_profile = request.user.profile
-#     profile_user = UserUpdateForm(request.POST, instance=request.user)
-#     profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
-#     return render(request, 'account/profile.html',
-#                   {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile,
-#                    'categories': categories})

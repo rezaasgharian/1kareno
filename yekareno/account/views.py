@@ -6,8 +6,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from .models import *
-# from yekareno.blog.models import Category
-
 
 
 # Create your views here.
@@ -60,13 +58,11 @@ def logout(request):
 
 
 def profile(request):
-    categories = Category.objects.all()
     user_profile = request.user.profile
     profile_user = UserUpdateForm(request.POST, instance=request.user)
     profile_model = ProfileUpdateForm(request.POST, instance=request.user.profile)
     return render(request, 'account/profile.html',
-                  {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile,
-                   'categories': categories})
+                  {'profile_user': profile_user, 'profile_model': profile_model, 'profile': user_profile})
 
 
 def profileUpdate(request):

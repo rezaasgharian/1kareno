@@ -96,8 +96,8 @@
                         <div class="indicator" style="right: 476px; left: 0px;"></div>
                     </ul>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
-                    <div class="pull-right">
+                <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs">
+                    <div class="pull-right" style="margin-right: 20px">
                         <div class="dropdown">
                             <a data-toggle="dropdown"
                                class="dropdown-toggle btn-rounded btn btn-primary waves-effect waves-light" href="#">
@@ -109,6 +109,13 @@
                                 <li><a href="#">Unfollow</a></li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-1 hidden-xs">
+                    <div class="pull-right">
+                            <a
+                               class="btn-rounded btn btn-primary" href="{% url 'blog:createArticle' %}">
+                                Create Article </a>
                     </div>
                 </div>
             </div>
