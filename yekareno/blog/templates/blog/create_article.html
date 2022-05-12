@@ -105,7 +105,7 @@ Fixed Navigation
     <div class="panel-body">
         <form method="post" action="{% url 'blog:createArticle' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="file" name="image" accept="image/*" required id="id_image">
+<!--            <input type="file" name="image" accept="image/*" required id="id_image">-->
 
             <div class="form-group">
                 <label for="title">Title</label>
@@ -114,7 +114,7 @@ Fixed Navigation
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea style="height: 125px" name="description" id="description"
+                <textarea value="{article.description}}" style="height: 125px" name="description" id="description"
                           class="form-control">{{article.description}}</textarea>
             </div>
             <div class="form-group">
@@ -129,6 +129,11 @@ Fixed Navigation
                 <label for="pub_date">Pub_date</label>
                 <input value="{{article.pub_date}}" type="datetime-local" name="pub_date"
                        id="pub_date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input value="{{article.image}}" type="file" name="image" id="image"
+                       class="form-control">
             </div>
             <div class="form-group">
                 <label for="status">Status</label>

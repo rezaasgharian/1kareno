@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.conf import settings
-from PIL import Image
 
 
 # Create your models here.
@@ -36,7 +35,7 @@ class Article(models.Model):
     title = models.CharField(max_length=150, blank=False)
     description = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='media/thumbnails')
+    image = models.ImageField(upload_to='thumbnails')
     pub_date = models.DateTimeField(default=timezone.now, blank=True, null=True)
     status = models.CharField(choices=CATEGORY_CHOICES, max_length=1)
 

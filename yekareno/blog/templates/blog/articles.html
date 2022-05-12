@@ -19,7 +19,7 @@
 					{% for article in articles %}
 						<figure class="team-member col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp animated" data-wow-duration="500ms">
 							<div class="member-thumb">
-								<img src="{{article.thumbnail.url}}" alt="Team Member" class="img-responsive" style="height: 200px !important;width: 100%">
+								<img src="{{article.image.url}}" alt="Team Member" class="img-responsive" style="height: 200px !important;width: 100%">
 								<figcaption class="overlay">
 									<a style="color: white" href="{% url 'blog:articleDetail' article.id %}"><h5>{{article.title}}</h5></a>
 									<ul class="social-links text-center">

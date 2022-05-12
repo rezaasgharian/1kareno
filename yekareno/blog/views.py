@@ -31,19 +31,17 @@ def articles(request):
 @login_required
 def create_article(request):
     if request.method == 'POST':
-        form = userCreateArticle(request.POST)
-        print(form)
-        # if form.is_valid():
-        #     data = form.cleaned_data
-        #     print(request)
-        #     Article.objects.create(user_id=request.user.id, title=data['title'], description=data['description'],
-        #                            category=data['category'], pub_date=data['pub_date'],
-        #                            status=data['status'], image=data['image'])
-        #     # return redirect('blog:articles')
-        #     return HttpResponse('Your article is added')
-        # else:
-        #     print(form.data)
-        #     print(form.errors)
+        form = userCreateArticle(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+            print(request)
+            Article.objects.create(user_id=request.user.id, title=data['title'], description=data['description'],
+                                   category=data['category'], pub_date=data['pub_date'],
+                                   status=data['status'], image=data['image'])
+            return redirect('blog:articles')
+        else:
+            print(form.data)
+            print(form.errors)
     else:
         categories = Category.objects.all()
         user_article = userCreateArticle()
