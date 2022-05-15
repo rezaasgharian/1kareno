@@ -9,8 +9,6 @@ from .models import *
 
 
 # Create your views here.
-
-
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
