@@ -2,10 +2,20 @@
 /* =================================== */
 /*	Basic Style 
 /* =================================== */
+@font-face {
+    font-family: Vazir;
+    src: url('../font/Vazir.eot'),
+    url('../font/Vazir.woff2') format('woff2'),
+    url('../font/Vazir.woff') format('woff'),
+    url('../font/Vazir.ttf') format('truetype');
+font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 body {
     background-color: #fff;
-    font-family: 'Open Sans', sans-serif;
+    font-family: Vazir;
     line-height: 21px;
 	font-size: 13px;
     color: #6a737b;
@@ -25,7 +35,6 @@ figure, p {
 
 a {
     color: #fff;
-	
     -webkit-transition: all .3s ease-in 0s;
        -moz-transition: all .3s ease-in 0s;
         -ms-transition: all .3s ease-in 0s;
