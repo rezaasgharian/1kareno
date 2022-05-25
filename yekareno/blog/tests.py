@@ -1,14 +1,16 @@
-from django.test import TestCase
+import unittest
 from django.urls import reverse, resolve
 from .views import *
-from selenium import webdriver
+# from selenium import webdriver
 
-# Create your tests here.
+# class TestBlogPage(unittest.TestCase):
+#     def test_index_page(self):
 
 
-browser = webdriver.chrome()
-browser.get('http://localhost:8000/blog')
-browser.find_element_by_xpath('//*[@id="nav"]/li[5]/a').click()
+
+# browser = webdriver.chrome()
+# browser.get('http://localhost:8000/blog')
+# browser.find_element_by_xpath('//*[@id="nav"]/li[5]/a').click()
 
 
 #
