@@ -1,5 +1,5 @@
 """
-ASGI config for yekareno project.
+ASGI config for yekareno2 project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

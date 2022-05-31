@@ -16,11 +16,11 @@ class Category(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=150, blank=False, null=False)
-    description = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    description = models.TextField(null=False)
+    # # category = models.ForeignKey(Category, on_delete=models.CASCADE)
     thumbnail = models.ImageField(upload_to='media/thumbnails')
-    price = models.IntegerField()
-    url = models.URLField()
+    price = models.IntegerField(null=True)
+    url = models.URLField(null=False)
 
     def __str__(self):
         return self.title

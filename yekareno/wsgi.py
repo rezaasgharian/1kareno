@@ -1,5 +1,5 @@
 """
-WSGI config for yekareno project.
+WSGI config for yekareno2 project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
