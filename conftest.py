@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from blog.models import Article
 
 
-# def create_article():
 @pytest.fixture
 def new_user_factory(db):
     def create_user(
@@ -27,7 +26,7 @@ def new_user_factory(db):
             is_active=is_active,
         )
         return user
-    return create_user()
+    return create_user
 
 
 @pytest.fixture()

@@ -2,11 +2,17 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+import environ
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yekareno.settings')
+    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'yekareno.settings')
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'yekareno.settings'
+
+    # env = environ.Env(
+    #     DJANGO_SETTINGS_MODULE = 'yekareno.settings'
+    # )
+    # environ.Env.read_env()
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
