@@ -26,6 +26,7 @@ class Product(models.Model):
         return self.title
 
 
+
 class Article(models.Model):
     CATEGORY_CHOICES = (
         ('D', 'Draft'),
